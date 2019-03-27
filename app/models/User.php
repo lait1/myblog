@@ -7,8 +7,9 @@ use PDO;
  */
 class User extends Database
 {
-	const FIND_BY_LOGIN_STMT = "SELECT id_user FROM Users WHERE login = :login";
-	const INSERT_STMT_2 = "INSERT INTO users SET user_name=:user_name, login=:login, password=:password, access=:access";
+	const FIND_BY_LOGIN = "SELECT * FROM Users WHERE login = :login";
+	const FIND_BY_USER_ID = "SELECT id_user, user_hash FROM Users WHERE id_user = :id";
+
     const INSERT_STMT = "INSERT INTO Users (user_name, login, password, access) VALUES (:user_name, :login, :password, :access)";
     const UPDATE_STMT = "UPDATE Users SET password = :password WHERE id = :id";
     const DELETE_STMT = "DELETE FROM Users WHERE id = :id";
@@ -17,26 +18,26 @@ class User extends Database
 	protected $user_name;
 	protected $login;
 	protected $password;
-	protected $login_hash;
+	protected $user_hash;
 	protected $access;
 
 	public function getId() {return $this->id; }
 	public function getName() {return $this->user_name; }
     public function getLogin() {return $this->login; }
     public function getPassword() {return $this->password; }
-    public function getHash() {return $this->login_hash; }
+    public function getHash() {return $this->user_hash; }
     public function getAccess() {return $this->access; }
 
 	public function setId($id) {$this->id_user = $id;}
     public function setName($user_name) {$this->user_name = $user_name;}
     public function setLogin($login) {$this->login = $login;}
     public function setPassword($password) {$this->password = md5(md5(trim($password)));}
-    public function setHash($login_hash) {$this->login_hash = $login_hash;}
+    public function setHash($user_hash) {$this->user_hash = $user_hash;}
     public function setAccess($access) {$this->access = $access;}
 
     public function insert() {
     	Database::openConnection(); 
-        $stmt = self::$connection->prepare(self::INSERT_STMT_2);
+        $stmt = self::$connection->prepare(self::INSERT_STMT);
         $stmt->bindParam(':user_name', $this->user_name, PDO::PARAM_STR);
         $stmt->bindParam(':login', $this->login, PDO::PARAM_STR);
         $stmt->bindParam(':password', $this->password, PDO::PARAM_STR);
@@ -45,11 +46,28 @@ class User extends Database
         return $this->id_user = self::$connection->lastInsertId();
     }
 
+	public static function findByID($id_user) {
+		Database::openConnection(); 
+        $stmt = self::$connection->prepare(self::FIND_BY_USER_ID);
+        $stmt->bindParam(':id', $id_user, PDO::PARAM_INT);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
+    public static function findByLogin($login) {
+    	Database::openConnection(); 
+        $stmt = self::$connection->prepare(self::FIND_BY_LOGIN);
+        $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $row;
+    }
 	// public function __construct($date){
 	// 	$this->id_user=$date['id_user'];
 	// 	$this->login=$date['login'];
 	// 	$this->password=$date['password'];
-	// 	$this->login_hash=$date['login_hash'];
+	// 	$this->user_hash=$date['user_hash'];
 	// 	$this->user_name=$date['user_name'];
 	// 	$this->access=$date['access'];
 	// }
