@@ -12,8 +12,11 @@
 
 </head>
 <body>
+	<?php 
+		include 'app/views/'.$content_view; 
+	      ?>
 <h1>Тыгы-дык</h1>
-<form class="main_form"  method="post" >
+<form class="main_form"  method="post" action="login">
 	<label for="login">Имя пользователя</label><br>
 	<input type="text"  name="login" id="login" required><Br>
 

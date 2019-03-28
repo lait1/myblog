@@ -8,14 +8,11 @@ Class Registration extends Controller {
 	{
 		$this->view->generate('access_view.php', 'registration_view.php');
 	}
+	
 	public function action_create()
 	{
-		echo $_POST["user_name"];
-		echo $_POST["login"];
-		echo $_POST["password"];
 		$err = [];
 
-	//    // проверям логин
 	    if(!preg_match("/^[a-zA-Z0-9]+$/",$_POST["login"]))
 	    {
 	        $err[] = "Логин может состоять только из букв английского алфавита и цифр";
@@ -37,6 +34,7 @@ Class Registration extends Controller {
 
 			if($id > 0){
 				echo "WIN!!!";
+				$this->view->generate('main_view.php', 'template_view.php');
 			}
 	    }
 	    else
