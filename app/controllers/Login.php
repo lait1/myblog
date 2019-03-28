@@ -6,32 +6,25 @@ class Login extends Controller{
 
 	public function action_index()
 	{
-	$data = User::findByLogin($_POST["login"]);
-	while($data){ 
-	    // Сравниваем пароли
+		$data = User::findByLogin($_POST["login"]);
 	    if($data['password'] === md5(md5($_POST['password']))){
-	        // Генерируем случайное число и шифруем его
-	        $hash = md5(generateCode(10));
-	        $user_id= $data['user_id'];
-	        // Записываем в БД новый хеш авторизации и IP
-	        // $add_row = $connection->exec( "UPDATE user SET user_hash='$hash' WHERE user_id='$user_id'");
-	        if($add_row){
-	            echo "Модель успешно обновлена в базе";
-	            }
-	        else {echo "Ошибка обновления UPDATE users SET user_hash='".$hash."' WHERE user_id='".$user_id."'"; 
-	        }
+	        $hash = md5(User::generateCode(10));
 
-	        // Ставим куки
-	        setcookie("id", $data['user_id'], time()+60*60*24*30);
-	        setcookie("hash", $hash, time()+60*60*24*30,null,null,null,true); // httponly !!!
+			$User = new User;
+	    	$User->setId($data['id_user']);
+	    	$User->setHash($hash);
+	    	$User->updateHash();
 
-	        // Переадресовываем браузер на страницу проверки нашего скрипта
-	        // header("Location: check.php"); exit();
+	        setcookie("id", $data['id_user'], time()+60*60*24*30);
+	        setcookie("hash", $hash, time()+60*60*24*30,null,null,null,true); 
+
+	        $host = 'http://'.$_SERVER['HTTP_HOST'].'/'.'myblog/';
+			header('Location:'.$host);
 	    }
 	    else{
 	        print "Вы ввели неправильный логин/пароль";
 	    }
     }
 
-	}
+
 }

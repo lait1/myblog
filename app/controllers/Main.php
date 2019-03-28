@@ -7,31 +7,26 @@ class Main extends Controller {
 
 	public function action_index()
 	{
-	if (isset($_COOKIE['id']) and isset($_COOKIE['hash'])){
-	    $id_user=intval($_COOKIE['id']);
-	    $userdata = User::findByID($id_user);
 
-	    while($userdata){ 
-	        if(($userdata['user_hash'] !== $_COOKIE['hash']) or ($userdata['user_id'] !== $_COOKIE['id'])){
+		if (isset($_COOKIE['id']) and isset($_COOKIE['hash'])){
+		    $id_user=intval($_COOKIE['id']);
+		    $userdata = User::findByID($id_user);
 
-	            setcookie("id", "", time() - 3600*24*30*12, "/");
-	            setcookie("hash", "", time() - 3600*24*30*12, "/");
-	            $data = "Хм, что-то не получилось";
-	        }
-	        else{
-	            $data = "Привет, ".$userdata['user_login'].". Всё работает!";
-	            
-	        }
-	    }
-	}
+		        if(($userdata['user_hash'] !== $_COOKIE['hash']) or ($userdata['id_user'] !== $_COOKIE['id'])){
+		            echo "Хм, что-то не получилось";
+		        }
+		        else{
 
-	$this->view->generate('main_view.php', 'template_view.php');
+		            $data = "Привет, ".$userdata['user_name'].". Всё работает!";
+		            $this->view->generate('post_view.php', 'template_view.php',$data);
+		        }
+
+		}else{
+			$this->view->generate('main_view.php', 'template_view.php');
+		}
+
 			
 	}
 
-	public function action_login()
-	{
 
-		
-	}
 }

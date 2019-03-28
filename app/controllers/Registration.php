@@ -6,7 +6,7 @@ Class Registration extends Controller {
 
 	public function action_index()
 	{
-		$this->view->generate('access_view.php', 'registration_view.php');
+		$this->view->generate('registration_view.php', 'template_view.php');
 	}
 	
 	public function action_create()
@@ -33,8 +33,7 @@ Class Registration extends Controller {
 			$id = $User->insert();
 
 			if($id > 0){
-				echo "WIN!!!";
-				$this->view->generate('main_view.php', 'template_view.php');
+				header("Location: index.php"); exit();
 			}
 	    }
 	    else
@@ -42,12 +41,6 @@ Class Registration extends Controller {
 	    	print_r($err);
 	    } 
 		
-		// $res = $User->CreateUser();
-		// if($res == true){
-		// 	$this->view->generate('main_view.php', 'template_view.php');
-		// }else{
-		// 	// Перенаправление на страницу с выводом ошибок
-			// $this->view->generate('main_view.php', 'template_view.php', $res);
-		// }
+		
 	}
 }
