@@ -1,32 +1,34 @@
 <?php
+
 namespace app\controllers;
+
 use app\models\User;
 
-class Main extends Controller {
+class Main extends Controller
+{
 
 
-	public function action_index()
-	{
+    public function action_index()
+    {
 
-		if (isset($_COOKIE['id']) and isset($_COOKIE['hash'])){
-		    $id_user=intval($_COOKIE['id']);
-		    $userdata = User::findByID($id_user);
+        if (isset($_COOKIE['id']) and isset($_COOKIE['hash'])) {
+            $id_user = intval($_COOKIE['id']);
+            $userdata = User::findByID($id_user);
 
-		        if(($userdata['user_hash'] !== $_COOKIE['hash']) or ($userdata['id_user'] !== $_COOKIE['id'])){
-		            echo "Хм, что-то не получилось";
-		        }
-		        else{
+            if (($userdata['user_hash'] !== $_COOKIE['hash']) or ($userdata['id_user'] !== $_COOKIE['id'])) {
+                echo "Хм, что-то не получилось";
+            } else {
 
-		            $data = "Привет, ".$userdata['user_name'].". Всё работает!";
-		            $this->view->generate('post_view.php', 'template_view.php',$data);
-		        }
+                $data = "Привет, " . $userdata['user_name'] . ". Всё работает!";
+                $this->view->generate('post_view.php', 'template_view.php', $data);
+            }
 
-		}else{
-			$this->view->generate('main_view.php', 'template_view.php');
-		}
+        } else {
+            $this->view->generate('main_view.php', 'template_view.php');
+        }
 
-			
-	}
+
+    }
 
 
 }

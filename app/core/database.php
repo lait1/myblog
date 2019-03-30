@@ -3,6 +3,9 @@ namespace app\core;
 use PDO;
 class Database
 {
+    /**
+     * @var PDO
+     */
 	protected static $connection;
 
 	public static function openConnection() { 
@@ -10,7 +13,7 @@ class Database
       self::$connection = new PDO("mysql:host=localhost; dbname=blog;charset=UTF8", "root", "", array( PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'UTF8'" ));
 	}
 
-	// public static function getAll($sql, $params= array()) { 
+	// public static function getAll($sql, $params= array()) {
 	//  Database::openConnection(); 
 
  //    $stmt = self::$connection->prepare($sql); 

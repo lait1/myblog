@@ -33,7 +33,8 @@ Class Registration extends Controller {
 			$id = $User->insert();
 
 			if($id > 0){
-				header("Location: index.php"); exit();
+				$host = 'http://'.$_SERVER['HTTP_HOST'].'/'.'myblog/';
+			header('Location:'.$host);
 			}
 	    }
 	    else
