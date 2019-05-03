@@ -145,14 +145,6 @@ class User extends Database
     // 	$this->access=$date['access'];
     // }
 
-    // public static function getAllUsers() {
-    //        $AllUsers = [];
-    //        $UserArray = Database::getAll("SELECT * FROM users");
-    //        foreach ($UserArray as $UserData) {
-    //            $User[] = new User($UserData);
-    //        }
-    //        return $User;
-    //    }
     public static function load(array $resultset)
     {
         $instance = new static;

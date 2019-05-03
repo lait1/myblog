@@ -19,7 +19,13 @@ class Main extends Controller
                 echo "Хм, что-то не получилось";
             } else {
 
-                $data = "Привет, " . $userdata['user_name'] . ". Всё работает!";
+//                $data = "Привет, " . $userdata['user_name'] . ". Всё работает!";
+                $data = \app\models\Post::GetAllPost();
+//                foreach($data as $post){
+//                    $autor = User::findByID($post['autor']);
+//                    $data[]['autor']=$autor['user_name'];
+//                }
+
                 $this->view->generate('post_view.php', 'template_view.php', $data);
             }
 
