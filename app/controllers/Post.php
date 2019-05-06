@@ -9,7 +9,10 @@
 namespace app\controllers;
 
 
-class Post
+class Post extends Controller
 {
+    public function action_index($options)
+    {
 
+    }
 }

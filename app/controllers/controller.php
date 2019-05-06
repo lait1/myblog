@@ -11,7 +11,7 @@ class Controller {
 		$this->view = new \app\core\View();
 	}
 	
-	public function action_index()
+	public function action_index($options)
 	{
 	}
 }

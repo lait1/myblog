@@ -4,7 +4,7 @@ use app\models\User;
 
 class Login extends Controller{
 
-	public function action_index()
+	public function action_index($options)
 	{
 		$data = User::findByLogin($_POST["login"]);
 	    if($data['password'] === md5(md5($_POST['password']))){

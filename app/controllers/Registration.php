@@ -4,9 +4,13 @@ use app\models\User;
 
 Class Registration extends Controller {
 
-	public function action_index()
+	public function action_index($options)
 	{
+	    if(isset($paraneter)){
+	        echo 'huuuuuiiiiii'.$options;
+        }
 		$this->view->generate('registration_view.php', 'template_view.php');
+
 	}
 	
 	public function action_create()
@@ -34,7 +38,7 @@ Class Registration extends Controller {
 
 			if($id > 0){
 				$host = 'http://'.$_SERVER['HTTP_HOST'].'/'.'myblog/';
-			header('Location:'.$host);
+			    header('Location:'.$host);
 			}
 	    }
 	    else

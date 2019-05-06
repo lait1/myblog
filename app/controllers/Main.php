@@ -8,7 +8,7 @@ class Main extends Controller
 {
 
 
-    public function action_index()
+    public function action_index($options)
     {
 
         if (isset($_COOKIE['id']) and isset($_COOKIE['hash'])) {

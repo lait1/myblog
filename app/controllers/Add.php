@@ -13,7 +13,7 @@ use app\models\User;
 
 class Add extends Controller
 {
-    public function action_index()
+    public function action_index($options)
     {
         $this->view->generate('addpost.php', 'template_view.php');
     }
