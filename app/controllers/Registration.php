@@ -1,19 +1,28 @@
 <?php
 namespace app\controllers;
+use app\core\Route;
 use app\models\User;
 
 Class Registration extends Controller {
 
 	public function action_index($options)
 	{
-	    if(isset($paraneter)){
-	        echo 'huuuuuiiiiii'.$options;
+	    switch ($options){
+            case 'index':
+                $this->view->generate('registration_view.php', 'template_view.php');
+                break;
+            case 'create':
+                Registration::action_create();
+                break;
+            default:
+                Route::ErrorPage404();
         }
-		$this->view->generate('registration_view.php', 'template_view.php');
 
-	}
+    }
+
+
 	
-	public function action_create()
+	public static function action_create()
 	{
 		$err = [];
 
@@ -44,8 +53,7 @@ Class Registration extends Controller {
 	    else
 	    {
 	    	print_r($err);
-	    } 
-		
-		
+	    }
+
 	}
 }

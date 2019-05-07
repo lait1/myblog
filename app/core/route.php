@@ -1,6 +1,7 @@
 <?php
 namespace app\core;
 
+use app\controllers\Add;
 use app\controllers\Error404;
 use app\controllers\Login;
 use app\controllers\Main;
@@ -19,14 +20,14 @@ class Route
             'post' => Post::class,
             'login'=> Login::class,
             'registration'=>Registration::class,
-            '404'=>Error404::class
+            '404'=>Error404::class,
+            'add'=>Add::class
         ];
-        $options=1;
+        $options='index';
         $path=explode('/', $_SERVER['REQUEST_URI']);
         $url = 'myblog';
 
         if(!empty($path[2])) $url = $path[2];
-
         if(isset($path[3])) $options = $path[3];
 
 	    if(isset($routes[$url])){

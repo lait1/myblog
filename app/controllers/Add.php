@@ -9,13 +9,24 @@
 namespace app\controllers;
 
 
+use app\core\Route;
 use app\models\User;
 
 class Add extends Controller
 {
     public function action_index($options)
     {
-        $this->view->generate('addpost.php', 'template_view.php');
+        switch ($options){
+            case 'index':
+                $this->view->generate('addpost.php', 'template_view.php');
+                break;
+            case 'create':
+                Add::action_create();
+                break;
+            default:
+                Route::ErrorPage404();
+        }
+
     }
 
     public function action_create()
