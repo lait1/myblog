@@ -11,4 +11,5 @@ echo 'Автор:'.$data['user_name'].'<br>';
 echo 'Заголовок:'.$data['title'].'<br>';
 echo 'Контент:'.$data['content'].'<br>';
 echo 'Дата:'.$data['date_public'].'<br>';
+echo '<br>';
 

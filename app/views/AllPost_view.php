@@ -10,4 +10,5 @@ foreach ($data as $post){
 }
 ?>
 <a href="add">Добавить пост</a>
+<a href="add/category">Создание категории</a>
 

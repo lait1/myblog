@@ -8,7 +8,7 @@
 echo $data;
 ?>
 
-<form method="POST" action="add/create">
+<form method="POST" action="add/createPost">
     Заголовок <input name="title" type="text" ><br>
 Сообщение <input name="content" type="textarea" ><br>
 

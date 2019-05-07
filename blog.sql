@@ -122,13 +122,13 @@ ALTER TABLE `post`
 --
 -- Индексы таблицы `tags`
 --
-ALTER TABLE `tags`
+ALTER TABLE category
   ADD PRIMARY KEY (`id`);
 
 --
 -- Индексы таблицы `tag_post`
 --
-ALTER TABLE `tag_post`
+ALTER TABLE cat_post
   ADD PRIMARY KEY (`id`);
 
 --
@@ -159,12 +159,12 @@ ALTER TABLE `post`
 --
 -- AUTO_INCREMENT для таблицы `tags`
 --
-ALTER TABLE `tags`
+ALTER TABLE category
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT для таблицы `tag_post`
 --
-ALTER TABLE `tag_post`
+ALTER TABLE cat_post
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT для таблицы `users`
