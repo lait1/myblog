@@ -15,10 +15,13 @@ use PDO;
 class Category extends Database
 {
     const GET_ALL_CAT = "SELECT * FROM category";
-
+    const GET_CAT_ID_POST ="SELECT CatName FROM cat_post
+                left join post on post_id=post.id
+                left join category on cat_id=category.id
+                where post.id=:id";
     const INSERT_CAT = "INSERT INTO category(CatName) value (:catName)";
     const INSERT_CAT_POST = "INSERT INTO cat_post(cat_id, post_id) value (:cat_id, :post_id)";
-    
+
     protected $id;
     protected $catName;
 
@@ -62,6 +65,15 @@ class Category extends Database
         $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $row;
     }
+    public static function GetAllCatFromPost($id)
+    {
+        database::openConnection();
+        $stmt=self::$connection->prepare(self::GET_CAT_ID_POST);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
+    }
     public function insertCat()
     {
         database::openConnection();
@@ -76,7 +88,7 @@ class Category extends Database
         database::openConnection();
         $stmt=self::$connection->prepare(self::INSERT_CAT_POST);
         $stmt->bindParam(':cat_id', $cat, PDO::PARAM_STR);
-        $stmt->bindParam(':post_id', $post, PDO::PARAM_STR);    
+        $stmt->bindParam(':post_id', $post, PDO::PARAM_STR);
         $stmt->execute();
     }
 }
