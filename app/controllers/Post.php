@@ -9,10 +9,22 @@
 namespace app\controllers;
 
 
+use app\core\Route;
+
 class Post extends Controller
 {
     public function action_index($options)
     {
+        $data = \app\models\Post::FindById($options);
+
+        if(!empty($data)){
+            $this->view->generate('SinglePost.php','template_view.php', $data);
+        }
+        else
+        {
+            Route::ErrorPage404();
+        }
+//
 
     }
 }

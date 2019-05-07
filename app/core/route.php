@@ -39,38 +39,6 @@ class Route
             Route::ErrorPage404();
         }
 
-
-//
-//		$controller_name = 'Main';
-//		$action = 'index';
-//		$routes = explode('/', $_SERVER['REQUEST_URI']);
-//
-//
-//if ( !empty($routes[2]) )
-//		{
-//			$controller_name = $routes[2];
-//		}
-//
-//		if ( !empty($routes[3]) )
-//		{
-//			$action = $routes[3];
-//		}
-//
-//		$controller_name = '\\app\\controllers\\'.$controller_name;
-//		$action = 'action_'.$action;
-//
-//		$controller = new $controller_name;
-//
-//
-//		if(method_exists($controller, $action))
-//		{
-//			$controller->$action();
-//		}
-//		else
-//		{
-//			Route::ErrorPage404();
-//		}
-	
 	}
 	
 	public static function ErrorPage404()

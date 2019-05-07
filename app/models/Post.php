@@ -15,7 +15,7 @@ use PDO;
 class Post extends Database
 {
     const GET_ALL_POST = "SELECT id, title, content, date_public, user_name FROM post inner join users where autor=id_user";
-    const FIND_BY_ID = "SELECT * FROM post where id= :id";
+    const FIND_BY_ID = "SELECT id, title, content, date_public, user_name FROM post inner join users where autor=id_user and id= :id";
 
     const INSERT_POST = "insert into post (autor, title, content, date_public) values (:autor, :title, :content, :date_public)";
 

@@ -21,12 +21,8 @@ class Main extends Controller
 
 //                $data = "Привет, " . $userdata['user_name'] . ". Всё работает!";
                 $data = \app\models\Post::GetAllPost();
-//                foreach($data as $post){
-//                    $autor = User::findByID($post['autor']);
-//                    $data[]['autor']=$autor['user_name'];
-//                }
 
-                $this->view->generate('post_view.php', 'template_view.php', $data);
+                $this->view->generate('AllPost_view.php', 'template_view.php', $data);
             }
 
         } else {
