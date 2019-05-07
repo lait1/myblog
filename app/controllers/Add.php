@@ -17,9 +17,11 @@ class Add extends Controller
 {
     public function action_index($options)
     {
+
         switch ($options){
             case 'index':
-                $this->view->generate('AddPost.php', 'template_view.php');
+                $data=Category::GetAllCat();
+                $this->view->generate('AddPost.php', 'template_view.php', $data);
                 break;
             case 'createPost':
                 Add::action_createPost();
@@ -31,25 +33,18 @@ class Add extends Controller
                 Add::action_createCat();
                 break;
             default:
-//                Route::ErrorPage404();
+                Route::ErrorPage404();
         }
 
     }
 
     public function action_createPost()
     {
+
+//        $this->processArray($_POST);
         $id_user = intval($_COOKIE['id']);
         $userdata = User::findByID($id_user);
-//        switch($userdata['access']){
-//            case 'normal':
-//                $this->view->generate('NormalUserView.php', 'template_view.php', $data);
-//                break;
-//            case 'moder':
-//                $this->view->generate('ModerUserView.php', 'template_view.php', $data);
-//                break;
-//            default:
-//                $this->view->generate('registration_view.php', 'template_view.php', $data);
-//        }
+
         $Post = new \app\models\Post();
         $Post->setAutor($userdata['id_user']);
         $Post->setContent($_POST['content']);
@@ -57,7 +52,9 @@ class Add extends Controller
         $Post->setDatePublic(date('Y-m-d H:i:s'));
 
         $LastPostId = $Post->insertPost();
-
+        foreach ($_POST['category'] as $cat=>$value){
+            Category::insertCatPost($value, $LastPostId);
+        }
         if ($LastPostId>0){
             $host = 'http://'.$_SERVER['HTTP_HOST'].'/'.'myblog/';
             header('Location:'.$host);
@@ -73,6 +70,17 @@ class Add extends Controller
         if ($LastCatId>0){
             $host = 'http://'.$_SERVER['HTTP_HOST'].'/'.'myblog/';
             header('Location:'.$host);
+        }
+    }
+
+    private function processArray($array)
+    {
+        if(!is_array($array)){
+            echo $array;
+            return $array;
+        }
+        foreach($array as $arrayItem){
+            $this->processArray($arrayItem);
         }
     }
 }

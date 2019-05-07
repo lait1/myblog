@@ -17,7 +17,8 @@ class Category extends Database
     const GET_ALL_CAT = "SELECT * FROM category";
 
     const INSERT_CAT = "INSERT INTO category(CatName) value (:catName)";
-
+    const INSERT_CAT_POST = "INSERT INTO cat_post(cat_id, post_id) value (:cat_id, :post_id)";
+    
     protected $id;
     protected $catName;
 
@@ -56,7 +57,7 @@ class Category extends Database
     public static function GetAllCat()
     {
         database::openConnection();
-        $stmt=self::$connection->prepare(self::INSERT_CAT);
+        $stmt=self::$connection->prepare(self::GET_ALL_CAT);
         $stmt->execute();
         $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $row;
@@ -65,9 +66,17 @@ class Category extends Database
     {
         database::openConnection();
         $stmt = self::$connection->prepare(self::INSERT_CAT);
-        $stmt->bindParam(':catName', $this->catName, PDO::FETCH_ASSOC);
+        $stmt->bindParam(':catName', $this->catName, PDO::PARAM_STR);
         $stmt->execute();
         return $this->id = self::$connection->lastInsertId();
     }
 
+    public static function insertCatPost($cat, $post)
+    {
+        database::openConnection();
+        $stmt=self::$connection->prepare(self::INSERT_CAT_POST);
+        $stmt->bindParam(':cat_id', $cat, PDO::PARAM_STR);
+        $stmt->bindParam(':post_id', $post, PDO::PARAM_STR);    
+        $stmt->execute();
+    }
 }

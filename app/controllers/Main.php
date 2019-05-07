@@ -21,7 +21,16 @@ class Main extends Controller
 
 //                $data = "Привет, " . $userdata['user_name'] . ". Всё работает!";
                 $data = \app\models\Post::GetAllPost();
-
+//         switch($userdata['access']){
+//            case 'normal':
+//                $this->view->generate('NormalUserView.php', 'template_view.php', $data);
+//                break;
+//            case 'moder':
+//                $this->view->generate('ModerUserView.php', 'template_view.php', $data);
+//                break;
+//            default:
+//                $this->view->generate('registration_view.php', 'template_view.php', $data);
+//        }
                 $this->view->generate('AllPost_view.php', 'template_view.php', $data);
             }
 
