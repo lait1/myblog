@@ -15,7 +15,7 @@ use PDO;
 class Category extends Database
 {
     const GET_ALL_CAT = "SELECT * FROM category";
-    const GET_CAT_ID_POST ="SELECT CatName FROM cat_post
+    const GET_CAT_ID_POST ="SELECT cat_id, CatName FROM cat_post
                 left join post on post_id=post.id
                 left join category on cat_id=category.id
                 where post.id=:id";
@@ -63,6 +63,7 @@ class Category extends Database
         $stmt=self::$connection->prepare(self::GET_ALL_CAT);
         $stmt->execute();
         $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//        return $row ? self::load($row) : null;
         return $row;
     }
     public static function GetAllCatFromPost($id)
@@ -72,6 +73,7 @@ class Category extends Database
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
         $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//        return $row ? self::load($row) : null;
         return $row;
     }
     public function insertCat()
@@ -91,4 +93,5 @@ class Category extends Database
         $stmt->bindParam(':post_id', $post, PDO::PARAM_STR);
         $stmt->execute();
     }
+
 }

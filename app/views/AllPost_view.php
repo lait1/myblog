@@ -1,12 +1,17 @@
 <?php
 //print_r($data);
-foreach ($data as $post){
+//var_dump ($data);
+
+foreach ($data['post'] as $post){
+    foreach ($post['category'] as $cat){
+        echo '<a href="category/'.$cat['cat_id'].'">'.$cat['CatName'].'</a><br>';
+    }
     echo 'Автор:'.$post['user_name'].'<br>';
     echo 'Заголовок:'.$post['title'].'<br>';
     echo 'Контент:'.$post['content'].'<br>';
     echo 'Дата:'.$post['date_public'].'<br>';
     echo '<a href="post/'.$post['id'].'">Подробнее</a>';
-    echo '<br>';
+    echo '<br><br>';
 }
 ?>
 <a href="add">Добавить пост</a>

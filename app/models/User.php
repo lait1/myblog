@@ -145,16 +145,6 @@ class User extends Database
     // 	$this->access=$date['access'];
     // }
 
-    public static function load(array $resultset)
-    {
-        $instance = new static;
-        foreach ($resultset as $key => $value) {
-            if (property_exists($instance, $key)) {
-                $instance->$key = $value;
-            }
-        }
-        return $instance;
-    }
 
 
 }

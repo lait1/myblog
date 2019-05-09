@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Category;
 use app\models\User;
 
 class Main extends Controller
@@ -19,8 +20,13 @@ class Main extends Controller
                 echo "Хм, что-то не получилось";
             } else {
 
-//                $data = "Привет, " . $userdata['user_name'] . ". Всё работает!";
-                $data = \app\models\Post::GetAllPost();
+                $data['post'] = \app\models\Post::GetAllPost();
+                $i=0;
+                foreach($data['post'] as $dataId){
+                    $data['post'][$i]['category']=Category::GetAllCatFromPost($dataId['id']);
+                    $i++;
+                }
+
 //         switch($userdata['access']){
 //            case 'normal':
 //                $this->view->generate('NormalUserView.php', 'template_view.php', $data);

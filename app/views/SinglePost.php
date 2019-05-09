@@ -13,3 +13,4 @@ echo 'Контент:'.$data['content'].'<br>';
 echo 'Дата:'.$data['date_public'].'<br>';
 echo '<br>';
 
+?>

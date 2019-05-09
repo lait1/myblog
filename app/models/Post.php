@@ -18,6 +18,7 @@ class Post extends Database
     const FIND_BY_ID = "SELECT id, title, content, date_public, user_name FROM post inner join users where autor=id_user and id= :id";
 
     const INSERT_POST = "insert into post (autor, title, content, date_public) values (:autor, :title, :content, :date_public)";
+    const DELETE_POST = "DELETE FROM post WHERE id=:id";
 
     protected $id;
     protected $autor;
@@ -116,6 +117,13 @@ class Post extends Database
         $stmt->execute();
         return $this->id = self::$connection->lastInsertId();
     }
+    public function deletePost($id)
+    {
+        database::openConnection();
+        $stmt = self::$connection->prepare(self::INSERT_POST);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+    }
 
     public static function GetAllPost()
     {
@@ -124,6 +132,7 @@ class Post extends Database
         $stmt->execute();
         $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $row;
+//        return $row ? self::load($row) : null;
     }
 
     public static function FindById($id)

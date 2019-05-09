@@ -12,7 +12,7 @@
     Сообщение <input name="content" type="textarea" ><br>
 <?php
     foreach ($data as $cat){
-        echo $cat['CatName'].'<input type="checkbox" name="category[]" value="'.$cat['id'].'"><br>';
+        echo $cat['catName'].'<input type="checkbox" name="category[]" value="'.$cat['id'].'"><br>';
     }
 ?>
 <input name="submit" type="submit" value="Добавить пост">
