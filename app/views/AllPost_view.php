@@ -13,6 +13,11 @@ foreach ($data['post'] as $post){
     echo '<a href="post/'.$post['id'].'">Подробнее</a>';
     echo '<br><br>';
 }
+echo 'Категории:<br>';
+foreach ($data['allCategory'] as $cat){
+
+    echo '<a href="category/'.$cat['id'].'">'.$cat['catName'].'</a><br>';
+}
 ?>
 <a href="add">Добавить пост</a>
 <a href="add/category">Создание категории</a>

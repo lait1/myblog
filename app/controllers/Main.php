@@ -19,7 +19,7 @@ class Main extends Controller
             if (($userdata['user_hash'] !== $_COOKIE['hash']) or ($userdata['id_user'] !== $_COOKIE['id'])) {
                 echo "Хм, что-то не получилось";
             } else {
-
+                $data['allCategory']=Category::GetAllCat();
                 $data['post'] = \app\models\Post::GetAllPost();
                 $i=0;
                 foreach($data['post'] as $dataId){

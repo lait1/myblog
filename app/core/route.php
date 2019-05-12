@@ -2,6 +2,7 @@
 namespace app\core;
 
 use app\controllers\Add;
+use app\controllers\Category;
 use app\controllers\Error404;
 use app\controllers\Login;
 use app\controllers\Main;
@@ -21,7 +22,8 @@ class Route
             'login'=> Login::class,
             'registration'=>Registration::class,
             '404'=>Error404::class,
-            'add'=>Add::class
+            'add'=>Add::class,
+            'category'=>Category::class,
         ];
         $options='index';
         $path=explode('/', $_SERVER['REQUEST_URI']);

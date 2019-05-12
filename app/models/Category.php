@@ -19,6 +19,12 @@ class Category extends Database
                 left join post on post_id=post.id
                 left join category on cat_id=category.id
                 where post.id=:id";
+    const GET_POST_ID_CAT ="SELECT post.id, title, content, date_public, user_name FROM cat_post
+              left join post on post_id=post.id
+              left join category on cat_id=category.id
+              left join users on post.autor= users.id_user
+            where category.id=:id";
+
     const INSERT_CAT = "INSERT INTO category(CatName) value (:catName)";
     const INSERT_CAT_POST = "INSERT INTO cat_post(cat_id, post_id) value (:cat_id, :post_id)";
 
@@ -74,6 +80,15 @@ class Category extends Database
         $stmt->execute();
         $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //        return $row ? self::load($row) : null;
+        return $row;
+    }
+    public static function GetAllPostFromCat($id)
+    {
+        database::openConnection();
+        $stmt=self::$connection->prepare(self::GET_POST_ID_CAT);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $row;
     }
     public function insertCat()
