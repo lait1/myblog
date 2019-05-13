@@ -46,8 +46,7 @@ Class Registration extends Controller {
 			$id = $User->insert();
 
 			if($id > 0){
-				$host = 'http://'.$_SERVER['HTTP_HOST'].'/'.'myblog/';
-			    header('Location:'.$host);
+			    header('Location:'.HomeUrl);
 			}
 	    }
 	    else

@@ -7,7 +7,7 @@
  */
 
 namespace app\controllers;
-
+use app\core\Route;
 
 class Category extends Controller
 {

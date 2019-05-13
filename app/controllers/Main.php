@@ -45,7 +45,7 @@ class Main extends Controller
                 }
                 $this->view->generate('AllPost_view.php', 'template_view.php', $data);
                 break;
-            case 'moder':
+            case 2:
                 $this->view->generate('ModerUserView.php', 'template_view.php', $data);
                 break;
             default:
