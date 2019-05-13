@@ -6,7 +6,7 @@
  * Time: 11:50
  */
 ?>
-<form method="POST" action="createCat">
+<form method="POST" action="<?php echo HomeUrl; ?>add/createCat">
     Категория <input name="catName" type="text" ><br>
 
 <input name="submit" type="submit" value="Добавить категорию">

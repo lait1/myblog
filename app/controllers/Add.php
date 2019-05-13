@@ -56,8 +56,7 @@ class Add extends Controller
             Category::insertCatPost($value, $LastPostId);
         }
         if ($LastPostId>0){
-            $host = 'http://'.$_SERVER['HTTP_HOST'].'/'.'myblog/';
-            header('Location:'.$host);
+            header('Location:'.HomeUrl);
         }
 
     }
@@ -68,8 +67,7 @@ class Add extends Controller
         $LastCatId = $Category->insertCat();
 
         if ($LastCatId>0){
-            $host = 'http://'.$_SERVER['HTTP_HOST'].'/'.'myblog/';
-            header('Location:'.$host);
+            header('Location:'.HomeUrl);
         }
     }
 

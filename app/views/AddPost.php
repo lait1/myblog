@@ -7,7 +7,7 @@
  */
 ?>
 
-<form method="POST" action="add/createPost">
+<form method="POST" action="<?php echo HomeUrl; ?>add/createPost">
     Заголовок <input name="title" type="text" ><br>
     Сообщение <input name="content" type="textarea" ><br>
 <?php

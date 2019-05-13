@@ -135,7 +135,17 @@ class User extends Database
         }
         return $code;
     }
-
+    public static function AccessCheck(){
+        if (isset($_COOKIE['id']) and isset($_COOKIE['hash'])) {
+            $id_user = intval($_COOKIE['id']);
+            $userData = self::findByID($id_user);
+            if (($userData['user_hash'] !== $_COOKIE['hash']) or ($userData['id_user'] !== $_COOKIE['id'])) {
+               return false;
+            } else {
+                return $userData['access'];
+            }
+        }
+    }
     // public function __construct($date){
     // 	$this->id_user=$date['id_user'];
     // 	$this->login=$date['login'];

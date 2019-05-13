@@ -18,7 +18,7 @@ class Login extends Controller{
 	        setcookie("id", $data['id_user'], time()+60*60*24*30);
 	        setcookie("hash", $hash, time()+60*60*24*30,null,null,null,true); 
 
-	        $host = 'http://'.$_SERVER['HTTP_HOST'].'/'.'myblog/';
+	        $host = 'http://'.$_SERVER['HTTP_HOST'].'/';
 			header('Location:'.$host);
 	    }
 	    else{

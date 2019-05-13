@@ -9,7 +9,7 @@
 //var_dump($data);
 
 foreach ($data['category'] as $cat){
-    echo '<a href="category/'.$cat['cat_id'].'">'.$cat['CatName'].'</a><br>';
+    echo '<a href="'.HomeUrl.'category/'.$cat['cat_id'].'">'.$cat['CatName'].'</a><br>';
 }
 echo 'Автор:'.$data['user_name'].'<br>';
 echo 'Заголовок:'.$data['title'].'<br>';
