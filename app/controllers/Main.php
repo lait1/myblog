@@ -45,9 +45,9 @@ class Main extends Controller
                 }
                 $this->view->generate('AllPost_view.php', 'template_view.php', $data);
                 break;
-            case 2:
-                $this->view->generate('ModerUserView.php', 'template_view.php', $data);
-                break;
+//            case 2:
+//                $this->view->generate('ModerUserView.php', 'template_view.php', $data);
+//                break;
             default:
                 $this->view->generate('main_view.php', 'template_view.php');
         }
