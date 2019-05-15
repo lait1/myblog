@@ -14,13 +14,14 @@ class Database
 	}
     public static function load(array $resultset)
     {
-        $instance = new static;
+//        $instance=array;
+//        $instance = new static;
 
         foreach ($resultset as $key => $value) {
 //            foreach ($value as $keys => $values) {
-                if (property_exists($instance, $key)) {
-                    $instance->$key = $value;
-                }
+//                if (property_exists($instance, $key)) {
+                    $instance = $value;
+//                }
 //            }
 
         }

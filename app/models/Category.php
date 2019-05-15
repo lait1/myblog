@@ -15,6 +15,7 @@ use PDO;
 class Category extends Database
 {
     const GET_ALL_CAT = "SELECT * FROM category";
+    const FIND_CAT_BY_ID = "SELECT catName FROM category WHERE id=:id";
     const GET_CAT_ID_POST ="SELECT cat_id, CatName FROM cat_post
                 left join post on post_id=post.id
                 left join category on cat_id=category.id
@@ -71,6 +72,16 @@ class Category extends Database
         $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //        return $row ? self::load($row) : null;
         return $row;
+    }
+    public static function FindCatById($id)
+    {
+        database::openConnection();
+        $stmt=self::$connection->prepare(self::FIND_CAT_BY_ID);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $row ? self::load($row) : null;
+//        return $row;
     }
     public static function GetAllCatFromPost($id)
     {

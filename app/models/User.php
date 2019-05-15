@@ -142,7 +142,7 @@ class User extends Database
             if (($userData['user_hash'] !== $_COOKIE['hash']) or ($userData['id_user'] !== $_COOKIE['id'])) {
                return false;
             } else {
-                return $userData['access'];
+                return $userData;
             }
         }
     }

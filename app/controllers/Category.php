@@ -8,16 +8,17 @@
 
 namespace app\controllers;
 use app\core\Route;
-
+use \app\models\Category as CategoryModel;
 class Category extends Controller
 {
     public function action_index($options)
     {
-        $data['post']=\app\models\Category::GetAllPostFromCat($options);
-        $data['allCategory']=\app\models\Category::GetAllCat();
+        $data['post']=CategoryModel::GetAllPostFromCat($options);
+        $data['allCategory']=CategoryModel::GetAllCat();
+        $data['catTitle'] = CategoryModel::FindCatById($options);
         $i=0;
         foreach($data['post'] as $dataId){
-            $data['post'][$i]['category']=\app\models\Category::GetAllCatFromPost($dataId['id']);
+            $data['post'][$i]['category']=CategoryModel::GetAllCatFromPost($dataId['id']);
             $i++;
         }
 

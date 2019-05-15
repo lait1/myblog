@@ -11,8 +11,14 @@ class Main extends Controller
 
     public function action_index($options)
     {
-        $access=User::AccessCheck();
-
+        $data['userData']=User::AccessCheck();
+        $data['allCategory']=Category::GetAllCat();
+        $data['post'] = \app\models\Post::GetAllPost();
+        $i=0;
+        foreach($data['post'] as $dataId){
+            $data['post'][$i]['category']=Category::GetAllCatFromPost($dataId['id']);
+            $i++;
+        }
 
 //        if (isset($_COOKIE['id']) and isset($_COOKIE['hash'])) {
 //            $id_user = intval($_COOKIE['id']);
@@ -34,23 +40,17 @@ class Main extends Controller
 //            $this->view->generate('main_view.php', 'template_view.php');
 //        }
 //
-         switch($access){
-            case 1:
-                $data['allCategory']=Category::GetAllCat();
-                $data['post'] = \app\models\Post::GetAllPost();
-                $i=0;
-                foreach($data['post'] as $dataId){
-                    $data['post'][$i]['category']=Category::GetAllCatFromPost($dataId['id']);
-                    $i++;
-                }
-                $this->view->generate('AllPost_view.php', 'template_view.php', $data);
-                break;
+//         switch($access){
+//            case 1:
+//
+//                $this->view->generate('AllPost_view.php', 'template_view.php', $data);
+//                break;
 //            case 2:
 //                $this->view->generate('ModerUserView.php', 'template_view.php', $data);
 //                break;
-            default:
-                $this->view->generate('main_view.php', 'template_view.php');
-        }
+//            default:
+                $this->view->generate('AllPost_view.php', 'template_view.php', $data);
+//        }
 
 
 
