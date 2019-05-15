@@ -48,11 +48,10 @@
 
     </div>
     <div class="main">
-        <?php
-        foreach ($data['post'] as $post) {
-            ?>
             <div class="post-feed__container">
-                <div class="post">
+                <?php foreach ($data['post'] as $post) {?>
+                    <div class="post">
+
                     <div class="post__meta">
                         <div class="post__autor">
                             <a href="#" class="post__user-info">
@@ -80,8 +79,8 @@
                         <a href="/post/<?php echo $post['id'] ?>" class="post__btn">Подробнее</a>
                     </div>
                 </div>
+                <?php } ?>
             </div>
-        <?php } ?>
     </div>
     <div class="clearFix"></div>
     <footer>

@@ -1,3 +1,35 @@
+.main .post__btn, .main .post__title_link {
+  text-decoration: none;
+}
+.main .post__btn:link, .main .post__title_link:link {
+  color: #fff;
+}
+.main .post__btn:visited, .main .post__title_link:visited {
+  color: #fff;
+}
+.main .post__btn:hover, .main .post__title_link:hover {
+  color: #696b77;
+}
+.main .post__btn:active, .main .post__title_link:active {
+  color: #fff;
+}
+
+.main .post__category-link, .main .post__user-info, .sidebar .category__link {
+  text-decoration: none;
+}
+.main .post__category-link:link, .main .post__user-info:link, .sidebar .category__link:link {
+  color: #696b77;
+}
+.main .post__category-link:visited, .main .post__user-info:visited, .sidebar .category__link:visited {
+  color: #696b77;
+}
+.main .post__category-link:hover, .main .post__user-info:hover, .sidebar .category__link:hover {
+  color: #fff;
+}
+.main .post__category-link:active, .main .post__user-info:active, .sidebar .category__link:active {
+  color: #696b77;
+}
+
 .clearFix {
   content: "";
   clear: both;
@@ -85,24 +117,66 @@ body {
   margin: 15px 0;
 }
 .sidebar .category__link {
-  text-decoration: none;
   color: #696b77;
   font-size: 14px;
-}
-.sidebar .category__link:active {
-  color: #fff;
-}
-.sidebar .category__link:visited {
-  color: #696b77;
-}
-.sidebar .category__link:hover {
-  color: #fff;
 }
 
 .main {
   float: left;
   width: 80%;
   box-sizing: border-box;
+}
+.main .post-feed {
+  margin: 0;
+}
+.main .post-feed__container {
+  padding: 20px;
+  background: #2f3239;
+}
+.main .post {
+  margin-bottom: 15px;
+}
+.main .post__meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #696b77;
+}
+.main .post__user-info {
+  text-decoration: none;
+}
+.main .post__title {
+  margin-bottom: 5px;
+}
+.main .post__category {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.main .post__category-item {
+  margin-right: 10px;
+}
+.main .post__category-link {
+  font-size: 14px;
+}
+.main .post__content {
+  margin: 25px 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+.main .post__footer {
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #ffffff47;
+}
+.main .post__btn {
+  background: #1e1f24;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  padding: 10px 15px;
+  font-size: 14px;
 }
 
 /*# sourceMappingURL=style.css.map */

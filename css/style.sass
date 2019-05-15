@@ -1,8 +1,32 @@
 $main-bg: #1e1f24
-$main-content: #2f3239
+$second-bg: #2f3239
 $btn: #3d5efe
 $main-text: #fff
 $second-text: #696b77
+
+%main-link
+  &
+    text-decoration: none
+  &:link
+    color: $main-text
+  &:visited
+    color: $main-text
+  &:hover
+    color: $second-text
+  &:active
+    color: $main-text
+
+%second-link
+  &
+    text-decoration: none
+  &:link
+    color: $second-text
+  &:visited
+    color: $second-text
+  &:hover
+    color: $main-text
+  &:active
+    color: $second-text
 
 .clearFix
   content: ""
@@ -73,17 +97,66 @@ body
     &__item
       margin: 15px 0
     &__link
-      text-decoration: none
+      //text-decoration: none
       color: $second-text
       font-size: 14px
-      &:active
-        color: $main-text
-      &:visited
-        color: $second-text
-      &:hover
-        color: $main-text
+      @extend %second-link
 
 .main
   float: left
   width: 80%
   box-sizing: border-box
+  .post-feed
+    margin: 0
+    &__container
+      padding: 20px
+      background: $second-bg
+  .post
+    margin-bottom: 15px
+    &__meta
+      display: flex
+      justify-content: space-between
+      font-size: 14px
+      color: $second-text
+    &__user-info
+      text-decoration: none
+      @extend %second-link
+    &__title
+      margin-bottom: 5px
+      &_link
+        @extend %main-link
+    &__category
+      display: flex
+      margin: 0
+      padding: 0
+      list-style: none
+      &-item
+        margin-right: 10px
+      &-link
+        font-size: 14px
+        @extend %second-link
+    &__content
+      margin: 25px 0
+      font-size: 16px
+      line-height: 1.5
+    &__footer
+      display: flex
+      justify-content: flex-end
+      padding-bottom: 25px
+      border-bottom: 1px solid #ffffff47
+    &__btn
+      @extend %main-link
+      background: $main-bg
+      border: 1px solid #fff
+      border-radius: 10px
+      padding: 10px 15px
+      font-size: 14px
+
+
+
+
+
+
+
+
+
