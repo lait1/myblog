@@ -5,59 +5,56 @@
 <!--<a href="--><?php //echo HomeUrl; ?><!--add">Добавить пост</a>-->
 <!--<a href="--><?php //echo HomeUrl; ?><!--add/category">Создание категории</a>-->
 
-<div class="wrap">
-    <div class="header">
-        <div class="logo">Myblog</div>
-        <div class="search"></div>
-    </div>
-    <div class="sidebar">
-        <div class="sidebar-block auth">
-            <?php if (!isset($data['userData'])) { ?>
-                <div class="auth__header">Авторизация</div>
-                <div class="auth__content">
-                    <form class="auth_form" method="post" action="/login">
-                        <div class="auth__field">
-                            <input class="auth__input-text" type="text" name="login" id="login" placeholder="Логин"
-                                   required></div>
-                        <div class="auth__field">
-                            <input class="auth__input-text" type="password" name="password" id="password"
-                                   placeholder="Пароль" required></div>
-                        <div class="auth__field">
-                            <span class="auth__forget">Забыли пароль?</span></div>
-                        <div class="auth__field">
-                            <input class="auth__input-submit" type=submit value=Войти name="submit">
-                        </div>
-                        <div class="auth__field">
-                            <a href="/registration" class="auth__reg">Регистрация</a>
-                        </div>
-                    </form>
-                </div>
-            <?php } else {
-                echo '<div class="auth__header">Добро пожаловать, ' . $data['userData']['user_name'] . '</div>'; ?>
-                <div class="auth__content">
+<div class="sidebar">
+    <div class="sidebar-block auth">
+        <?php if (!isset($data['userData'])) { ?>
+            <div class="auth__header">Авторизация</div>
+            <div class="auth__content">
+                <form class="auth_form" method="post" action="/login">
                     <div class="auth__field">
-                        <a href="/add" class="auth__reg">Добавить пост</a>
+                        <input class="auth__input-text" type="text" name="login" id="login" placeholder="Логин"
+                               required></div>
+                    <div class="auth__field">
+                        <input class="auth__input-text" type="password" name="password" id="password"
+                               placeholder="Пароль" required></div>
+                    <div class="auth__field">
+                        <span class="auth__forget">Забыли пароль?</span></div>
+                    <div class="auth__field">
+                        <input class="auth__input-submit" type=submit value=Войти name="submit">
                     </div>
+                    <div class="auth__field">
+                        <a href="/registration" class="auth__reg">Регистрация</a>
+                    </div>
+                </form>
+            </div>
+        <?php } else {?>
+           <div class="auth__header">Добро пожаловать,
+               <? echo $data['userData']['user_name'] ?>
+           </div>
+            <div class="auth__content">
+                <div class="auth__field">
+                    <a href="/add" class="auth__reg">Добавить пост</a>
                 </div>
-            <?php } ?>
-        </div>
-
-
-        <div class="sidebar-block category">
-            <div class="category__header">
-                <h4>Категории:</h4>
             </div>
-            <div class="category__content">
-                <?php
-                foreach ($data['allCategory'] as $cat) {
-                    echo '<div class="category__item">';
-                    echo '<a href="/category/' . $cat['id'] . '" class="category__link" >' . $cat['catName'] . '</a></div>';
-                } ?>
-
-            </div>
-        </div>
-
+        <?php } ?>
     </div>
+
+
+    <div class="sidebar-block category">
+        <div class="category__header">
+            <h4>Категории:</h4>
+        </div>
+        <div class="category__content">
+            <?php
+            foreach ($data['allCategory'] as $cat) {
+                echo '<div class="category__item">';
+                echo '<a href="/category/' . $cat['id'] . '" class="category__link" >' . $cat['catName'] . '</a></div>';
+            } ?>
+
+        </div>
+    </div>
+
+</div>
     <div class="main">
 
         <div class="post-feed__container">
@@ -103,7 +100,3 @@
         </div>
     </div>
     <div class="clearFix"></div>
-    <footer>
-
-    </footer>
-</div>

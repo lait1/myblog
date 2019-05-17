@@ -8,11 +8,11 @@ use app\models\User;
 class Main extends Controller
 {
 
-
     public function action_index($options)
     {
         $data['userData']=User::AccessCheck();
         $data['allCategory']=Category::GetAllCat();
+
         $data['post'] = \app\models\Post::GetAllPost();
         $i=0;
         foreach($data['post'] as $dataId){

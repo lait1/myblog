@@ -17,31 +17,38 @@ class Add extends Controller
 {
     public function action_index($options)
     {
+        $data['userData']=User::AccessCheck();
 
-        switch ($options){
-            case 'index':
-                $data=Category::GetAllCat();
-                $this->view->generate('AddPost.php', 'template_view.php', $data);
-                break;
-            case 'createPost':
-                Add::action_createPost();
-                break;
-            case 'category':
-                $this->view->generate('AddCategory.php', 'template_view.php');
-                break;
-            case 'createCat':
-                Add::action_createCat();
-                break;
-            default:
-                Route::ErrorPage404();
+        if(isset($data['userData'])) {
+
+            switch ($options) {
+                case 'index':
+                    $data['category'] = Category::GetAllCat();
+                    $this->view->generate('AddPost.php', 'template_view.php', $data);
+                    break;
+                case 'createPost':
+                    Add::action_createPost();
+                    break;
+                case 'category':
+                    $this->view->generate('AddCategory.php', 'template_view.php');
+                    break;
+                case 'createCat':
+                    Add::action_createCat();
+                    break;
+                default:
+                    Route::ErrorPage404();
+            }
         }
-
+        else{
+            Route::ErrorPage404();
+        }
     }
 
     public function action_createPost()
     {
 
 //        $this->processArray($_POST);
+//        var_dump($_POST);
         $id_user = intval($_COOKIE['id']);
         $userdata = User::findByID($id_user);
 

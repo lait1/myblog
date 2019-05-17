@@ -28,6 +28,35 @@ $second-text: #696b77
   &:active
     color: $second-text
 
+%scroll
+  &::-webkit-scrollbar
+    width: 6px
+    border-radius: 10px
+    background-color: #F5F5F5
+
+  //&::-webkit-scrollbar-button
+  //  background: none
+
+
+  &::-webkit-scrollbar-track
+    width: 6px
+    border-radius: 10px
+    //background-color: #F5F5F5
+    background-color: #32312e
+    /* width: 3px; */
+    box-shadow: 0px 0px 3px #000 inset
+  //&::-webkit-scrollbar-track-piece
+  //  background: #32CD32
+
+  //ПОлзунок
+  &::-webkit-scrollbar-thumb
+    width: 12px
+    //background: #c1c1c1
+    border-radius: 10px
+    background-color: #3d5efe
+    box-shadow: 27px 0px 3px 0px #3d5efe inset
+    //box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3)
+
 .clearFix
   content: ""
   clear: both
@@ -36,11 +65,13 @@ body
   font: 100% Helvetica, sans-serif
   color: $main-text
   background: $main-bg
+
 .wrap
   box-sizing: border-box
   margin: 0 auto
   min-width: 1024px
   max-width: 1164px
+
 .header
   height: 60px
   padding: 0 15px
@@ -48,11 +79,12 @@ body
     font-size: 24px
     font-weight: bold
     text-transform: uppercase
+
 .sidebar
-  float: left
-  width: 20%
+  width: 250px
   padding: 0 15px
   box-sizing: border-box
+  position: fixed
   &-block
     margin-top: 20px
   .auth
@@ -71,6 +103,9 @@ body
       border-bottom: 1px solid #fff
       height: 25px
       background: $main-bg
+      color: $main-text
+      padding: 0 15px
+      box-sizing: border-box
     &__input-submit
       background: $btn
       border: 0
@@ -87,6 +122,9 @@ body
       font-size: 12px
       color: $main-text
   .category
+    height: 350px
+    overflow-y: auto
+    @extend %scroll
     //margin-top: 10px
     &__header
       font-size: 18px
@@ -97,14 +135,13 @@ body
     &__item
       margin: 15px 0
     &__link
-      //text-decoration: none
       color: $second-text
       font-size: 14px
       @extend %second-link
 
 .main
-  float: left
   width: 80%
+  margin-left: 260px
   box-sizing: border-box
   .post-feed
     margin: 0

@@ -13,6 +13,11 @@ class Category extends Controller
 {
     public function action_index($options)
     {
+//        if($options=='test'){
+//            $data['allCategory']=CategoryModel::GetAllCat();
+//            header('Content-Type: application/json');
+//            echo json_encode($data['allCategory']);
+//        }
         $data['post']=CategoryModel::GetAllPostFromCat($options);
         $data['allCategory']=CategoryModel::GetAllCat();
         $data['catTitle'] = CategoryModel::FindCatById($options);
