@@ -48,7 +48,8 @@ class Add extends Controller
     {
 
 //        $this->processArray($_POST);
-//        var_dump($_POST);
+        var_dump($_POST);
+        print_r($_FILES);
         $id_user = intval($_COOKIE['id']);
         $userdata = User::findByID($id_user);
 
@@ -58,13 +59,13 @@ class Add extends Controller
         $Post->setTitle($_POST['title']);
         $Post->setDatePublic(date('Y-m-d H:i:s'));
 
-        $LastPostId = $Post->insertPost();
-        foreach ($_POST['category'] as $cat=>$value){
-            Category::insertCatPost($value, $LastPostId);
-        }
-        if ($LastPostId>0){
-            header('Location:'.HomeUrl);
-        }
+//        $LastPostId = $Post->insertPost();
+//        foreach ($_POST['category'] as $cat=>$value){
+//            Category::insertCatPost($value, $LastPostId);
+//        }
+//        if ($LastPostId>0){
+//            header('Location:'.HomeUrl);
+//        }
 
     }
     public function action_createCat(){

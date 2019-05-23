@@ -1,4 +1,4 @@
-// $(document).ready(function() {
+$(document).ready(function() {
 // 	$.ajax({
 // 	  dataType: 'json',
 // 	  url: 'category',
@@ -24,12 +24,12 @@
 // 	      }                echo '<a href="/category/' . $cat['id'] . '" class="category__link" >' . $cat['catName'] . '</a></div>';
 // 		});
 //
-//     $('form').on('submit', function()
-//     {
-//         var content = $('.ql-editor').html();
-//         $('input[name="content"]').val(content);
-//     });
-// });
+    $('form').on('submit', function()
+    {
+        var content = $('.ql-editor').html();
+        $('input[name="content"]').val(content);
+    });
+});
 
 
 
